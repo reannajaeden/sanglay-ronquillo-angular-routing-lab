@@ -8,7 +8,7 @@ import { AdminGuard } from './admin/admin.guard';
 
 
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent, children: [
