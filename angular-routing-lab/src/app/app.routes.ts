@@ -7,7 +7,7 @@ import { ProfileComponent } from './about/profile/profile.component';
 
 
 
-const routes: Routes = [
+export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'about', component: AboutComponent, children: [
