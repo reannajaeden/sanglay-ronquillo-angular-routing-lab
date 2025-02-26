@@ -13,7 +13,8 @@ export const routes: Routes = [
     { path: 'about', component: AboutComponent, children: [
       { path: 'profile', component: ProfileComponent }
     ]},
-    { path: 'contact', component: ContactComponent }
+    { path: 'contact', component: ContactComponent },
+    { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
   ];
  
 
