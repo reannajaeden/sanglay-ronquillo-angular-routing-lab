@@ -20,7 +20,7 @@ const routes: Routes = [
     { 
       path: 'admin', 
       loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), 
-      canActivate: [AdminGuard] // Apply guard
+      canActivate: [AdminGuard]
     },
     { 
       path: 'parent',
@@ -42,7 +42,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule, 
-    RouterModule.forRoot(routes) // Configure RouterModule using routes  
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent] 
