@@ -6,9 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { RouterLink } from '@angular/router';
 import { ProfileComponent } from './about/profile/profile.component';
 
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,AboutComponent,ContactComponent,HomeComponent,ProfileComponent,RouterLink, RouterLinkActive],
+  imports: [RouterOutlet,AboutComponent,ContactComponent,HomeComponent,ProfileComponent,RouterLink, RouterLinkActive,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
