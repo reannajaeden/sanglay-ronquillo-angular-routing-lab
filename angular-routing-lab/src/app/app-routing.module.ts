@@ -7,6 +7,7 @@ import { ProfileComponent } from './about/profile/profile.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildOneComponent } from './child-one/child-one.component';
 import { ChildTwoComponent } from './child-two/child-two.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

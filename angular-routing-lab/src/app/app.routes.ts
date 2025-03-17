@@ -1,4 +1,6 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -7,33 +9,42 @@ import { AdminGuard } from './admin/admin.guard';
 import { ParentComponent } from './parent/parent.component'; 
 import { ChildOneComponent } from './child-one/child-one.component'; 
 import { ChildTwoComponent } from './child-two/child-two.component'; 
+import { AppComponent } from './app.component';
 
-
-export const routes: Routes = [
+const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'about', component: AboutComponent, },
+    { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
-    { path: 'profile', component: ProfileComponent},
+    { path: 'profile', component: ProfileComponent },
     { 
       path: 'admin', 
-      loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent),
+      loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), 
       canActivate: [AdminGuard] // Apply guard
     },
-    { path: 'parent',
+    { 
+      path: 'parent',
       component: ParentComponent, 
       children: [ 
-      { path: 'child-one', component: ChildOneComponent}, 
-      {  path: 'child-two', component: ChildTwoComponent }, 
-      {  path: '', redirectTo: 'child-one', pathMatch: 'full' }  
+        { path: 'child-one', component: ChildOneComponent }, 
+        { path: 'child-two', component: ChildTwoComponent }, 
+        { path: '', redirectTo: 'child-one', pathMatch: 'full' }  
       ]  
-    }, 
-    {  
-      path: '', 
-      redirectTo: '/parent', 
-      pathMatch: 'full' 
-    }   
-  ];
-  
-  
-  
+    }
+];
+
+@NgModule({
+  declarations: [ 
+    AppComponent, 
+    ParentComponent, 
+    ChildOneComponent, 
+    ChildTwoComponent 
+  ],
+  imports: [
+    BrowserModule, 
+    RouterModule.forRoot(routes) // Configure RouterModule using routes  
+  ],
+  providers: [],
+  bootstrap: [AppComponent] 
+})
+export class AppModule { }
