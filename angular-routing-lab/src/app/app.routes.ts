@@ -25,6 +25,7 @@ export const routes: Routes = [
   {
     path: 'parent',
     component: ParentComponent,
+    canActivate: [AdminGuard],
     children: [
       { path: 'child-one', component: ChildOneComponent },
       { path: 'child-two', component: ChildTwoComponent },

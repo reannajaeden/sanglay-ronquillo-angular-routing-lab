@@ -2,9 +2,19 @@
     <figure>
         <blockquote class="blockquote">
             <h1>WELCOME TO OUR WEBSITE!</h1>
+            <h1>{{ pageTitle }}</h1>
+            <p>Current Time: {{ currentTime }}</p>
           <p class="mb-0">We’re thrilled to have you visit. This site showcases our project in App Development (AppDev) and serves as a window into our creative process and learning journey. 
             Our team has poured heart and soul into developing innovative applications that aim to solve real-world problems and enhance user experiences.
           </p>  
+          <img [src]="imageUrl" [alt]="'Angular Logo'">
+          <button [disabled]="isDisabled">Click Me</button>
+          <button (click)="incrementCount()">Clicks: {{ clickCount }}</button>
+          <input (input)="onInput($event)" placeholder="Type something...">
+          <input [(ngModel)]="name" placeholder="Enter your name">
+          <p>Hello, {{ name }}!</p>
+          <input [(ngModel)]="email" placeholder="Enter your email">
+          <p>Your email is: {{ email }}</p>
         </blockquote>
     </figure>
 </div>
