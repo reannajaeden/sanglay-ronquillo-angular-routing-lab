@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   isAdmin(): boolean {
-    return true; 
+    return false; 
   }
 }

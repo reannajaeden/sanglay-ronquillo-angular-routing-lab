@@ -2,7 +2,7 @@
     <figure>
         <blockquote class="blockquote">
             <h1>WELCOME TO OUR WEBSITE!</h1>
-            <h1>{{ pageTitle }}</h1>
+<h1>{{ pageTitle }}</h1>
             <p>Current Time: {{ currentTime }}</p>
           <p class="mb-0">We’re thrilled to have you visit. This site showcases our project in App Development (AppDev) and serves as a window into our creative process and learning journey. 
             Our team has poured heart and soul into developing innovative applications that aim to solve real-world problems and enhance user experiences.
@@ -15,6 +15,19 @@
           <p>Hello, {{ name }}!</p>
           <input [(ngModel)]="email" placeholder="Enter your email">
           <p>Your email is: {{ email }}</p>
+
+<button (click)="openModal()">Open Modal</button>
+
+
+<div class="modal" [style.display]="isModalOpen ? 'flex' : 'none'">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>User Details</h2>
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+  </div>
+</div>
+
         </blockquote>
     </figure>
 </div>
