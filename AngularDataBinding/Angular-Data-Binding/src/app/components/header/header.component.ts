@@ -1,42 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  // Properties for interpolation
   title = 'Product Management App';
   currentPage = 'Dashboard';
-  
-  // Property for property binding
   isDarkTheme = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Update current page based on route changes
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      const path = event.urlAfterRedirects;
-
-      if (path.includes('/dashboard')) {
-        this.currentPage = 'Dashboard';
-      } else if (path.includes('/products') && !path.includes('/add-product')) {
-        this.currentPage = 'Products';
-      } else if (path.includes('/add-product')) {
-        this.currentPage = 'Add Product';
-      } else if (path.includes('/edit-product')) {
-        this.currentPage = 'Edit Product';
-      }
-    });
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        const path = event.urlAfterRedirects;
+        this.currentPage = path.includes('/dashboard') ? 'Dashboard' :
+                          path.includes('/products') && !path.includes('/add-product') ? 'Products' :
+                          path.includes('/add-product') ? 'Add Product' :
+                          path.includes('/edit-product') ? 'Edit Product' : 'Dashboard';
+      });
   }
 
-  // Method for event binding
   toggleTheme(): void {
     this.isDarkTheme = !this.isDarkTheme;
     console.log('Theme toggled:', this.isDarkTheme ? 'Dark' : 'Light');
